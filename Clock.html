@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시계</title>
+    <script>
+        log = console.log;
+
+        function pad(n, width) {
+            n = n + '';
+            return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+          }
+        
+        // 현재시각을 콘솔에 표시하기
+        const 시간체크 = () => {
+        let now = new Date(); // Date 생성자
+        let hh = now.getHours(); // 시간
+        let mm = now.getMinutes(); // 분
+        let ss = now.getSeconds(); // 초
+        document.getElementById('result').innerHTML = ` ${pad(hh,2)} : ${pad(mm,2)} : ${pad(ss,2)} `;
+        }
+        const 시간체크2 = () => {
+            let now2 = new Date();
+            log(`현재 시각은 ${now2} 입니다`);
+        }
+        window.onload = function() {
+            let button = document.getElementById("button");
+            button.onclick = 시간체크2;
+        }
+        const StartClock = () => {
+            시간체크();
+            timeId = setInterval(시간체크, 1000); // 시간체크 함수를 1000ms에 한번씩 실행한다.
+        }
+    </script>
+    <style>
+        body
+        {
+            background-color: black;
+        }
+        #result
+        {
+            display: flex;
+            font-size: 180px;
+            background-color: rgb(0, 0, 26);
+            color: white;
+            text-align: center;
+            height: 600px;
+            align-items: center;
+            justify-content: center;
+        }
+        #messege
+        {
+            display: flex;
+            color: white;
+            font-size: 35px;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+
+</head>
+<body>
+    <div id = 'result'>
+        <script>
+            StartClock();
+        </script>
+    </div>
+    <div id = 'messege'>
+    </div>
+</body>
+</html>
